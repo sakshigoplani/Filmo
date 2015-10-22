@@ -2778,3 +2778,83 @@ Processing by CartController#index as HTML
   Rendered cart/index.html.erb within layouts/application (53.8ms)
   [1m[36mUser Load (1.1ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
 Completed 200 OK in 595ms (Views: 574.7ms | ActiveRecord: 16.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-10-22 01:21:53 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by PageController#Home as HTML
+  Rendered page/Home.html.erb within layouts/application (30.8ms)
+  [1m[35mUser Load (41.7ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 2164ms (Views: 1814.7ms | ActiveRecord: 125.3ms)
+
+
+Started GET "/assets/cart.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-10-22 01:21:57 -0700
+
+
+Started GET "/assets/movies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-10-22 01:21:57 -0700
+
+
+Started GET "/assets/page.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-10-22 01:21:57 -0700
+
+
+Started GET "/assets/scaffolds.self-90c5e9b6a544d55fd5c18c3c24bffcba5194f81c4095286ce925db6e1f02c1c9.css?body=1" for 127.0.0.1 at 2015-10-22 01:21:57 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:57 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/application.self-9ae0fbc4020160296da1463253716b72441324e18d2054c89d547745d7036d99.css?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/cart.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/movies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/page.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-10-22 01:21:58 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-10-22 01:22:01 -0700
+Processing by PageController#Home as HTML
+  Rendered page/Home.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 318ms (Views: 315.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/page/About" for 127.0.0.1 at 2015-10-22 01:22:02 -0700
+Processing by PageController#About as HTML
+  Rendered page/About.html.erb within layouts/application (1.2ms)
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 535ms (Views: 525.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/page/Suggest_A_Movie" for 127.0.0.1 at 2015-10-22 01:22:05 -0700
+Processing by PageController#Suggest_A_Movie as HTML
+  Rendered page/Suggest_A_Movie.html.erb within layouts/application (36.3ms)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 605ms (Views: 550.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/page/Shop" for 127.0.0.1 at 2015-10-22 01:22:07 -0700
+Processing by PageController#Shop as HTML
+  Rendered page/Shop.html.erb within layouts/application (0.9ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 361ms (Views: 357.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2015-10-22 01:22:10 -0700
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (72.5ms)[0m  [1mSELECT `movies`.* FROM `movies`[0m
+  Rendered movies/index.html.erb within layouts/application (198.3ms)
+  [1m[35mUser Load (2.1ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 578ms (Views: 454.7ms | ActiveRecord: 81.5ms)
