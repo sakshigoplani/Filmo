@@ -7,7 +7,6 @@ class CreateMovies < ActiveRecord::Migration
       t.decimal :year
       t.decimal :imdb_rating
       t.decimal :length
-      t.string :worldwide_gross
       t.string :studio
       t.decimal :price
 

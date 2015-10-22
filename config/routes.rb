@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :movies
+  resources :movies
+  resources :movies
+  resources :movies
+  resources :movies
   devise_for :users
 
   get '/cart' => 'cart#index'

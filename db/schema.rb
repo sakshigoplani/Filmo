@@ -11,20 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021074811) do
+ActiveRecord::Schema.define(version: 20151022095234) do
 
   create_table "movies", force: :cascade do |t|
-    t.string   "title",           limit: 255
-    t.string   "poster_url",      limit: 255
-    t.string   "genres",          limit: 255
-    t.decimal  "year",                        precision: 10
-    t.decimal  "imdb_rating",                 precision: 10
-    t.decimal  "length",                      precision: 10
-    t.string   "worldwide_gross", limit: 255
-    t.string   "studio",          limit: 255
-    t.decimal  "price",                       precision: 10
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.string   "title",       limit: 255
+    t.string   "poster_url",  limit: 255
+    t.string   "genres",      limit: 255
+    t.decimal  "year",                    precision: 10
+    t.decimal  "imdb_rating",             precision: 10
+    t.decimal  "length",                  precision: 10
+    t.string   "studio",      limit: 255
+    t.decimal  "price",                   precision: 10
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "users", force: :cascade do |t|

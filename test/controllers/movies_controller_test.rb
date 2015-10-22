@@ -18,7 +18,7 @@ class MoviesControllerTest < ActionController::TestCase
 
   test "should create movie" do
     assert_difference('Movie.count') do
-      post :create, movie: { genres: @movie.genres, imdb_rating: @movie.imdb_rating, length: @movie.length, poster_url: @movie.poster_url, price: @movie.price, studio: @movie.studio, title: @movie.title, worldwide_gross: @movie.worldwide_gross, year: @movie.year }
+      post :create, movie: { genres: @movie.genres, imdb_rating: @movie.imdb_rating, length: @movie.length, poster_url: @movie.poster_url, price: @movie.price, studio: @movie.studio, title: @movie.title, year: @movie.year }
     end
 
     assert_redirected_to movie_path(assigns(:movie))
@@ -35,7 +35,7 @@ class MoviesControllerTest < ActionController::TestCase
   end
 
   test "should update movie" do
-    patch :update, id: @movie, movie: { genres: @movie.genres, imdb_rating: @movie.imdb_rating, length: @movie.length, poster_url: @movie.poster_url, price: @movie.price, studio: @movie.studio, title: @movie.title, worldwide_gross: @movie.worldwide_gross, year: @movie.year }
+    patch :update, id: @movie, movie: { genres: @movie.genres, imdb_rating: @movie.imdb_rating, length: @movie.length, poster_url: @movie.poster_url, price: @movie.price, studio: @movie.studio, title: @movie.title, year: @movie.year }
     assert_redirected_to movie_path(assigns(:movie))
   end
 

@@ -7,7 +7,6 @@ one:
   year: 9.99
   imdb_rating: 9.99
   length: 9.99
-  worldwide_gross: MyString
   studio: MyString
   price: 9.99
 
@@ -18,6 +17,5 @@ two:
   year: 9.99
   imdb_rating: 9.99
   length: 9.99
-  worldwide_gross: MyString
   studio: MyString
   price: 9.99
