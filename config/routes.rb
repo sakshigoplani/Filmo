@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  get '/cart' => 'cart#index'
+  get '/cart/clear' => 'cart#clearCart'
+  get '/cart/:id' => 'cart#add'
+  #resources :movies
+  resources :movies
+  root 'page#Home'
+
+  get 'page/About'
+
+  get 'page/Suggest_A_Movie'
+
+  get 'page/Shop'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
+ 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

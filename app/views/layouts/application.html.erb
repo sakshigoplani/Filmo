@@ -7,8 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<nav id="nav">
+<div id="page_nav">
+<%= link_to "Home" , root_path %>
+<%= link_to "About" , page_About_path %>
+<%= link_to "Suggest a Movie" , page_Suggest_A_Movie_path %>
+<%= link_to "Shop" , page_Shop_path %>
+<%= link_to "Cart" , movies_path %>
+</div>
+<div id="sign_in">
+<% if user_signed_in? %>
+<%= link_to "Sign Out", destroy_user_session_path , method: :delete %>	
+<% else %>
+<%= link_to "Login", new_user_session_path %>	
+<%= link_to "Sign Up", new_user_registration_path %>	
+<% end %>
+</div>
+</nav>
+<div id="main_wrap">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= yield %>
-
+</div>
 </body>
 </html>
