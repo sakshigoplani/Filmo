@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/cart/:id' => 'cart#add'
   #resources :movies
   resources :movies
-  root 'movies#index'
+  root 'page#Home'
 
   get 'page/About'
 
