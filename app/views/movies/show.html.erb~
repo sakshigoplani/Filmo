@@ -53,6 +53,10 @@
 <p><%=review.comment %></p><br>	
 <% end %>
 <% end %>
+
+<div class="star-rating" data-score=<%= @avg_review%>></div>
+<em> <%="#{@reviews.length} reviews" %></em>
+
 <%=link_to "Write a review", new_movie_review_path(@movie)%>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
