@@ -1,5 +1,6 @@
 # Filmo
-Filmo is a movie recommender with features like discussion forums and geo-location services. It is also an application for buying movie DVDs.
+Filmo is a source for movie content that allows its users to view movies from amongst a huge database, review and rate the movies of their choice as well as to add them to a shopping cart if they wish to buy the DVDs. Moreover, Filmo also provides a geo-location feature that the users could use to find nearby movie-theatres.
+
 
 # Team ouR_PASSion:<br />
 Akanksha Pandey<br /> ![Akankshsa Pandey](https://github.com/scalableinternetservices/Filmo/blob/master/team_pictures/Akanksha.jpg)<br />
