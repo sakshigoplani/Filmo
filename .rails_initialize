@@ -1,3 +1,2 @@
 #rake db:seed
 rake import_movies
-rake assets:precompile
