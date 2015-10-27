@@ -11,18 +11,21 @@ before_action :authenticate_user!, except: [:index, :show]
   # GET /movies
   # GET /movies.json
   def index
+  @flag = 1
+  @movies = Movie.all
    if params[:search]
 	if(Movie.search(params[:search]).blank?)
+	  @flag = 0
           @movies = Movie.all
 	else
-
-	@movies = Movie.search(params[:search])#.order("created_at DESC")
+	  @flag = 1 
+	  @movies = Movie.search(params[:search])#.order("created_at DESC")
   # elsif(Movie.search(params[:search]).blank?)
 #	@movies = Movie.all
 	#puts "Hii"
        end
    else
-    @movies = Movie.all
+    #@movies = Movie.all
   end
 end
 

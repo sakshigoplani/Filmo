@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
-<%= if @flag==0 %>
-<p>Movie not on the list!</p>
-<% else %>
+
+
+<br>
+<br>
+
+<% if @flag==1 %>
 <h1>Listing Movies</h1>
+<br>
 
 <table border="3">
   <thead>
@@ -31,15 +35,18 @@
         <td><%= movie.studio %></td>
         <td><%= movie.price %></td>
         <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> -->
+<!--        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 	<td><a href="/cart/<%=movie.id%>">Add to cart</a><td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p> Cannot find movie <p>
+<%= link_to 'Back', movies_path %>
 <% end %>
 <br>
 
-<%= link_to 'New Movie', new_movie_path %>
+<!-- <%= link_to 'New Movie', new_movie_path %> -->
 
