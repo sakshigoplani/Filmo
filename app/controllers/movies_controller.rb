@@ -1,12 +1,30 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
-
+#def search
+ #  if params[:search].present?
+#	@movies=Movie.search(params[:search])
+ #  else
+#	@movies=Movie.all
+ #  end
+ # end
   # GET /movies
   # GET /movies.json
   def index
+   if params[:search]
+	if(Movie.search(params[:search]).blank?)
+          @movies = Movie.all
+	else
+
+	@movies = Movie.search(params[:search])#.order("created_at DESC")
+  # elsif(Movie.search(params[:search]).blank?)
+#	@movies = Movie.all
+	#puts "Hii"
+       end
+   else
     @movies = Movie.all
   end
+end
 
   # GET /movies/1
   # GET /movies/1.json

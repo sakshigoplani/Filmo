@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<%= if @flag==0 %>
+<p>Movie not on the list!</p>
+<% else %>
 <h1>Listing Movies</h1>
 
 <table border="3">
@@ -36,7 +38,8 @@
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <br>
 
 <%= link_to 'New Movie', new_movie_path %>
+
