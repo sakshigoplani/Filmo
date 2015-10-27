@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
-<%= will_paginate @movies %>
+
 
 <br>
 <br>
 
 <% if @flag==1 %>
+<%= will_paginate @movies %>
 <h1>Listing Movies</h1>
 <br>
 
