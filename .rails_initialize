@@ -1,2 +1,3 @@
 #rake db:seed
 rake import_movies
+rake import_reviews
