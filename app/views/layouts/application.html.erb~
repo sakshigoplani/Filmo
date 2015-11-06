@@ -11,17 +11,19 @@
 <div id="page_nav">
 <%= link_to "Home" , root_path %>
 <%= link_to "About" , page_About_path %>
-<%= link_to "Suggest a Movie" , page_Suggest_A_Movie_path %>
-<%= link_to "Shop" , page_Shop_path %>
-<%= link_to "Cart" , movies_path %>
+#<%= link_to "Suggest a Movie" , page_Suggest_A_Movie_path %>
+#<%= link_to "Shop" , page_Shop_path %>
+<%= link_to "Cart" , cart_path %>
+</div>
 
+<div id="search_nav">
 <%= form_tag(movies_path, :method => "get", class: "navbar-form",id: "search-form") do %>
 <%= text_field_tag :search, params[:search], class:"span2", placeholder: "Search Movies" %>
 <button  type="submit">Submit</button>
 <br><br>
 <% end %>
-
 </div>
+
 <div id="sign_in">
 <% if user_signed_in? %>
 <%= link_to "Sign Out", destroy_user_session_path , method: :delete %>
