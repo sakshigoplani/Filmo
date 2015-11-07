@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024002238) do
+ActiveRecord::Schema.define(version: 20151107195840) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20151024002238) do
     t.datetime "updated_at",               null: false
     t.integer  "user_id",    limit: 4
     t.integer  "movie_id",   limit: 4
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords",   limit: 255
+    t.string   "genres",     limit: 255
+    t.decimal  "min_price",              precision: 10
+    t.decimal  "max_price",              precision: 10
+    t.decimal  "imdb_above",             precision: 10
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/cart/clear' => 'cart#clearCart'
   get '/cart/:id' => 'cart#add'
   #resources :movies
+  resources :searches
   resources :movies
   root 'movies#index'
 
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
- 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

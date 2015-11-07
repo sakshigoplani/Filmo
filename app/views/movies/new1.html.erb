@@ -1,0 +1,9 @@
+<h1> Suggest A Movie</h1>
+
+<%= form_for @movies,html: {class: "pure-form"} do |s| %>
+<div class="field">
+  <%= s.label :genres %>
+  <br>
+  <%= s.select :genres, options_for_select(@genres), :include_blank => true %>
+</div>
+<% end %>

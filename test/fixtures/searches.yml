@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  genres: MyString
+  min_price: 9.99
+  max_price: 9.99
+  imdb_above: 9.99
+
+two:
+  keywords: MyString
+  genres: MyString
+  min_price: 9.99
+  max_price: 9.99
+  imdb_above: 9.99
