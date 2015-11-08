@@ -21,7 +21,7 @@ before_action :authenticate_user!, except: [:index, :show]
           @movies = Movie.all
 	  @movies = @movies.paginate(:page => params[:page], :per_page => 10)
 	else
-	  @flag = 1 
+	  @flag = 1
 	  @movies = Movie.search(params[:search])#.order("created_at DESC")
 	  @movies = @movies.paginate(:page => params[:page], :per_page => 10)
   # elsif(Movie.search(params[:search]).blank?)

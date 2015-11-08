@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   #resources :movies
   resources :searches
   resources :movies
-  root 'movies#index'
+  root 'page#Home'
+  get 'page/Browse'
   get 'page/About'
 
   get 'page/Suggest_A_Movie'
