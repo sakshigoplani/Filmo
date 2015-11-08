@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   resources :searches
   resources :movies
   root 'movies#index'
-
   get 'page/About'
 
   get 'page/Suggest_A_Movie'
