@@ -1,66 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
 
-<p>
-  <strong>Poster url:</strong>
-  <p> <img src=" <%= @movie.poster_url %> " alt="HTML5 Icon" style="width:128px;height:128px;" /> </p>
-</p>
+<h1><%= @movie.title %></h1>
+
 
 <p>
-  <strong>Genres:</strong>
-  <%= @movie.genres %>
+  <p> <img src=" <%= @movie.poster_url %> " alt="HTML5 Icon" style="width:400px;height:400px;" /> </p>
 </p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
+<table class="table" style="width:400px;">
 
-<p>
-  <strong>Imdb rating:</strong>
-  <%= @movie.imdb_rating %>
-</p>
+<tr>
+  <td><h5><strong>Genres</strong></h5></td>
+  <td><h5><%= @movie.genres %></h5></td>
+</tr>
 
-<p>
-  <strong>Length:</strong>
-  <%= @movie.length %>
-</p>
+<tr>
+  <td><h5><strong>Year</strong></h5></td>
+  <td><h5><%= @movie.year %></h5></td>
+</tr>
 
-<p>
-  <strong>Studio:</strong>
-  <%= @movie.studio %>
-</p>
+<tr>
+  <td><h5><strong>Imdb rating</strong></h5></td>
+  <td><h5><%= @movie.imdb_rating %></h5></td>
+</tr>
 
-<p>
-  <strong>Price:</strong>
-  <%= @movie.price %>
-</p>
+<tr>
+  <td><h5><strong>Length</strong></h5></td>
+  <td><h5><%= @movie.length %></h5></td>
+</tr>
+
+<tr>
+  <td><h5><strong>Studio</strong></h5></td>
+  <td><h5><%= @movie.studio %></h5></td>
+</tr>
+
+<tr>
+  <td><h5><strong>Price</strong></h5></td>
+  <td><h5>$ <%= @movie.price %></h5></td>
+</tr>
+
+</table>
 
 
-<h1><%=@movie.title%></h1>
 <% if @reviews.blank?%>
 
-<h1>Be the first to review</h1>
+<h1>Be the first to review</h1><br>
 
 <% else %>
+<h3><strong>Average rating: <%="#{@reviews.length} reviews" %></strong></h3>
+<div class="star-rating" data-score=<%= @avg_review%>></div>
+<br>
+<h2>Reviews</h2><br>
+
+
 <% @reviews.each do |review| %>
 
 <div class="star-rating" data-score=<%= review.rating %>></div>
-<p><%=review.comment %></p><br>	
+<p><h4><%=review.comment %></h4></p><br>	
 <% end %>
 <% end %>
 
-<div class="star-rating" data-score=<%= @avg_review%>></div>
-<em> <%="#{@reviews.length} reviews" %></em>
 
-<%=link_to "Write a review", new_movie_review_path(@movie)%>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+<h4><%=link_to "Write a review", new_movie_review_path(@movie)%> | 
+<%= link_to 'Back', movies_path %></h4>
 
 
 <script>

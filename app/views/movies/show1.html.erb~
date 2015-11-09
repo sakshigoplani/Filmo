@@ -1,0 +1,39 @@
+<% if @movies.search_movies.empty? %>
+<p> No Records Found </p>
+<% else %>
+<div class="div">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><center><h4>Title</center></h4></th>
+        <th><center><h4>Poster url</center></h4></th>
+        <th><center><h4>Genres</center></h4></th>
+        <th><center><h4>Year</center></h4></th>
+        <th><center><h4>Imdb rating</center></h4></th>
+        <th><center><h4>Length</center></h4></th>
+        <th><center><h4>Studio</center></h4></th>
+        <th><center><h4>Price</center></h4></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+<% @movies.search_movies.each do |c| %>
+<br>
+    <tbody>
+        <tr>
+          <td><center><h5><%= c.title %></td>
+          <td> <center><h5><img src="<%= c.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /> </td>
+          <td><center><h5><%= c.genres %></td>
+          <td><center><h5><%= c.year %></td>
+          <td><center><h5><%= c.imdb_rating %></td>
+          <td><center><h5><%= c.length %></td>
+          <td><center><h5><%= c.studio %></td>
+          <td><center><h5><%= c.price %></td>
+          <td><center><h5><%= link_to 'Show', movie %></td>
+  <!--         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> -->
+  <!--        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+  	<td><a href="/cart/<%=movie.id%>">Add to cart</a><td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

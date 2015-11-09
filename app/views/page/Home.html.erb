@@ -1,13 +1,13 @@
 
 <p>
-  <%=image_tag("background_final.png",:width=>1270, :height=>650)%>
+  <%=image_tag("background_final.png",:width=>1225, :height=>650)%>
 
   <div id="search_nav" class="input-group input-group-lg" style="position:relative; left:-130px; top:-400px;">
   <%= form_tag(movies_path, :method => "get", class: "navbar-form",id: "search-form") do %>
   <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "Search Movies", size: "60x200" %> &nbsp&nbsp
 
   <div class="btn-group" role="group" aria-label="...">
-  <button  type="submit" class="btn btn-Primary" >&nbsp;&nbsp;Search&nbsp;&nbsp;</button>
+  <button  type="submit" name="hsearch" class="btn btn-primary" >&nbsp;&nbsp;Search&nbsp;&nbsp;</button>
 </div>
   <br><br>
   <% end %>

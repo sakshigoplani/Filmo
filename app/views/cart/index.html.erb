@@ -1,23 +1,58 @@
-<h1>Your Cart</h1>
+<h1><center>Your Cart</center></h1>
+
+<br><br>
+
 <% if @cart.empty? %>
-<p> Your Cart is currently empty </p>
-<% else %>
-<%= link_to 'Empty your cart' , cart_clear_path %>
+<center><h2> Your Cart is currently empty </h2></center>
 <% end %>
-<br><br><br>
+
+<% if !@cart.empty? %>
+<table align ="right">
+<th><h4>
+<%= link_to 'Empty your cart' , cart_clear_path %>
+</h4></th>
+<th><h4><%= link_to 'Checkout',page_Shop_path %></h4></th></tr>
+</table>
+
 <% total=0 %>
+
+
+<table class="table">
+<tr>
+<th><center><h4>Title</center></h4></th>
+<th><center><h4>Poster</center></h4></th>
+<th><center><h4>Genre</center></h4></th>
+<th><center><h4>Quantity</center></h4></th>
+<th><center><h4>Price</center></h4></th>
+</tr>
 <ul> <% @cart.each do |id,quantity| %>
 	<% movie=Movie.find_by_id (id) %>
-	<li>
-		<%= link_to movie.title,movie %>
-		<p> <%= movie.genres %> </p>
-		<p> $ <%= movie.price %> </p>
-		<p> Quantity: <%= quantity %> </p>
-	</li>
+
+
+
+<tr>	
+		<td><center><h5><%= link_to movie.title,movie %></h5></center></td>
+		<td><center><h5> <img src="<%= movie.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /> </h5></center></td>
+		<td><center> <h5><%= movie.genres %></h5> </center></td>
+		<td> <center><h5> <%= quantity %></h5></center> </td>
+		<td> <center><h5>$ <%= movie.price %> </h5></center></td>
+		
+	</tr>
+
+
 	<% total += quantity * movie.price %>
+	
 	<% end %>
-	<p> <b> $<%= total %> </b> </p>
-</ul>
-<p> <%= link_to 'Checkout',page_Shop_path %> </p>
+</table></ul>
+
+<table align ="right">
+<tr><th><h4>The total amount payable is :&nbsp&nbsp</h4></th>
+
+<th><h4>$ <%=total%></h4></th></tr>
+
+
+<tr></tr> </table>
+
+<% end %>
 
 

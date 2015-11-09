@@ -1,46 +1,15 @@
-<h1>Page#Home</h1>
-<p>Find me in app/views/page/Home.html.erb</p>
 
-<p id="notice"><%= notice %></p>
+<p>
+  <%=image_tag("background_final.png",:width=>1225, :height=>650)%>
 
-<h1>Listing Movies</h1>
+  <div id="search_nav" class="input-group input-group-lg" style="position:relative; left:-130px; top:-400px;">
+  <%= form_tag(movies_path, :method => "get", class: "navbar-form",id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "Search Movies", size: "60x200" %> &nbsp&nbsp
 
-<table border="3">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Poster url</th>
-      <th>Genres</th>
-      <th>Year</th>
-      <th>Imdb rating</th>
-      <th>Length</th>
-      <th>Studio</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td> <img src="<%= movie.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /> </td>
-        <td><%= movie.genres %></td>
-        <td><%= movie.year %></td>
-        <td><%= movie.imdb_rating %></td>
-        <td><%= movie.length %></td>
-        <td><%= movie.studio %></td>
-        <td><%= movie.price %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	<td><a href="/cart/<%=movie.id%>">Add to cart</a><td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Movie', new_movie_path %>
-
+  <div class="btn-group" role="group" aria-label="...">
+  <button  type="submit" name="hsearch" class="btn btn-primary" >&nbsp;&nbsp;Search&nbsp;&nbsp;</button>
+</div>
+  <br><br>
+  <% end %>
+  </div>
+</p>

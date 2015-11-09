@@ -1,0 +1,51 @@
+<h1> Search Results </h1>
+
+<% if @search.search_movies.empty? %>
+<p> No movies found! </p>
+
+<% else  %>
+
+
+<table class="table">
+<tr>
+<td>Title</td>
+<td>Poster URL</td>
+<td>Genres</td>
+<td>Price</td>
+
+</tr>
+
+<%= @search.search_movies.each do |c| %>
+
+<!-- <div class="div"> -->
+  <!--
+  <h1><%= c.title %></h1>
+  <p>Price : $<%= c.price %></p>
+  <p>Genres: <%= c.genres %></p>
+  <p>IMDB Rating :<%= c.imdb_rating %></p>
+-->
+
+
+<tr>
+  <td><%= c.title %></td>
+
+
+
+  <td> <img src=" <%= c.poster_url %> " alt="HTML5 Icon" style="width:128px;height:128px;"></img> </td>
+
+
+  <td><%= c.genres %></td>
+
+
+
+
+ <td> <%= c.price %></td>
+</tr>
+<!--<% end %>-->
+</table>
+<!-- </div> -->
+<% end %> 
+
+<p> <%= link_to 'Back',new_search_path %> </p>
+
+

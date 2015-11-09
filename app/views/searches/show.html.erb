@@ -1,11 +1,22 @@
-<h1> Search Results </h1>
+<h1><center> Search Results </center></h1>
 
 <% if @search.search_movies.empty? %>
-<p> No records found! </p>
+<p> No movies found! </p>
 
 <% else  %>
+
+
+<table class="table">
+<tr>
+<td>Title</td>
+<td>Poster URL</td>
+<td>Genres</td>
+<td>Price</td>
+
+</tr>
+
 <%= @search.search_movies.each do |c| %>
-<br>
+
 <!-- <div class="div"> -->
   <!--
   <h1><%= c.title %></h1>
@@ -13,47 +24,28 @@
   <p>Genres: <%= c.genres %></p>
   <p>IMDB Rating :<%= c.imdb_rating %></p>
 -->
-<p>
-  <strong>Title:</strong>
-  <%= c.title %>
-</p>
 
-<p>
-  <strong>Poster url:</strong>
-  <p> <img src=" <%= c.poster_url %> " alt="HTML5 Icon" style="width:128px;height:128px;"></img> </p>
-</p>
 
-<p>
-  <strong>Genres:</strong>
-  <%= c.genres %>
-</p>
+<tr>
+  <td><%= c.title %></td>
 
-<p>
-  <strong>Year:</strong>
-  <%= c.year %>
-</p>
 
-<p>
-  <strong>Imdb rating:</strong>
-  <%= c.imdb_rating %>
-</p>
 
-<p>
-  <strong>Length:</strong>
-  <%= c.length %>
-</p>
+  <td> <img src=" <%= c.poster_url %> " alt="HTML5 Icon" style="width:128px;height:128px;"></img> </td>
 
-<p>
-  <strong>Studio:</strong>
-  <%= c.studio %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= c.price %>
-</p>
+  <td><%= c.genres %></td>
 
+
+
+
+ <td> <%= c.price %></td>
+</tr>
+<!--<% end %>-->
+</table>
 <!-- </div> -->
-<!-- <% end %> -->
-<% end %>
+<% end %> 
+
 <p> <%= link_to 'Back',new_search_path %> </p>
+
+
