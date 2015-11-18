@@ -5,7 +5,7 @@
 <br>
 
 <% if @flag==1 %>
-<%= will_paginate @movies %>
+
 
 <br>
 
@@ -38,7 +38,7 @@
 <%= link_to 'Back', root_path %>
 </table>
 <% else %>
-<p> Cannot find movie <p>
+<h3><center>Cannot find movie :( </center></h3>
 <%= link_to 'Back', root_path %>
 <% end %>
 <br>

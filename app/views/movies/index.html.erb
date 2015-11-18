@@ -28,7 +28,7 @@
         <td><center><h5><%= movie.genres %></center></h5></td>
         <td><center><h5>$&nbsp;<%= movie.price %></center></h5></td>
         <td><center><h5><%= link_to 'Show', movie %></center></h5></td>
-<!--         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> -->
+         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> 
 <!--        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 	<td><center><h5><a href="/cart/<%=movie.id%>">Add to cart</a></center></h5><td>
       </tr>
