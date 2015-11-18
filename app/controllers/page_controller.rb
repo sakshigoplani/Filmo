@@ -1,5 +1,5 @@
 class PageController < ApplicationController
-caches_page :Browse
+
   def Home
   end
 
