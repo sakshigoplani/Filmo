@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  caches_page :index
 before_action :authenticate_user!, except: [:index, :show]
 #def search
  #  if params[:search].present?
