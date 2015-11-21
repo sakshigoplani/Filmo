@@ -12,14 +12,14 @@ before_action :authenticate_user!, except: [:index, :show]
   # GET /movies.json
   def index
   @flag = 1
-  @movies = Movie.all
+  #@movies = Movie.all
   @movies = Movie.paginate(:page => params[:page], :per_page => 10)
 
    if params[:search]
 	if(Movie.search(params[:search]).blank?)
 	  @flag = 0
-          @movies = Movie.all
-	  @movies = @movies.paginate(:page => params[:page], :per_page => 10)
+          #@movies = Movie.all
+	  @movies = Movie.paginate(:page => params[:page], :per_page => 10)
 	else
 	  @flag = 1
 	  @movies = Movie.search(params[:search])#.order("created_at DESC")
