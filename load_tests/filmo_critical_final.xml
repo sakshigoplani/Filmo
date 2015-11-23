@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+<!-- Client side setup -->
+<clients>
+<client host="localhost" use_controller_vm="true" maxusers='25000'/>
+</clients>
+<!-- Server side setup -->
+<servers>
+<server host="Filmo-mem-load-692885722.us-west-2.elb.amazonaws.com" port="80" type="tcp"></server>
+</servers>
+<load>
+<arrivalphase phase="1" duration="30" unit="second">
+<users arrivalrate="1" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="2" duration="30" unit="second">
+<users arrivalrate="2" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="3" duration="30" unit="second">
+<users arrivalrate="4" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="4" duration="30" unit="second">
+<users arrivalrate="8" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="5" duration="30" unit="second">
+<users arrivalrate="16" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="6" duration="30" unit="second">
+<users arrivalrate="32" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="7" duration="30" unit="second">
+<users arrivalrate="64" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="8" duration="30" unit="second">
+<users arrivalrate="128" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="9" duration="30" unit="second">
+<users arrivalrate="200" unit="second"></users>
+</arrivalphase>
+<arrivalphase phase="10" duration="30" unit="second">
+<users arrivalrate="250" unit="second"></users>
+</arrivalphase>
+</load>
+<options>
+<!-- Set connection timeout to 2 seconds -->
+<option name="global_ack_timeout" value="2000"></option>
+<option type="ts_http" name="user_agent">
+<user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+</option>
+<option name="file_server" id="search" value="search.csv"/>
+<option name="file_server" id="advance_search" value="advance_search.csv"/>
+<option name="file_server" id="comments" value="comments.csv"/>
+</options>
+<sessions>
+<!-- User Session consisting of the Critical Path - Reads + Writes -->
+<session name="http-example" probability="25" type="ts_http">
+<!-- start out at the dashboard. -->
+<request>
+<http url='/' version='1.1' method='GET'></http>
+</request>
+<!-- wait for up to 2 seconds, user is looking for the sign up button at the first page -->
+<thinktime value="2" random="true"></thinktime>
+<!-- visit the sign up page, as a user would do.  -->
+<request>
+<http url='/users/sign_up' version='1.1' method='GET'></http>
+</request>
+<!-- wait for up to 2 seconds, user is typing names -->
+<thinktime value="2" random="true"></thinktime>
+<setdynvars sourcetype="random_number" start="101" end="100100">
+<var name="random_email_id"/>
+</setdynvars>
+<!-- User Signs Up -->
+<request subst="true">
+<http
+  url='/users/sign_up'
+  version='1.1'
+  method='GET'
+  contents='user%5bemail%5d=filmo_%%_random_email_id%%%40gmail%2Ecom&amp;
+  user%5bpassword%5d=ouRPASSion&amp;
+  user%5bpassword_confirmation%5d=ouRPASSion&amp;
+  commit=Sign+up'>
+</http>
+</request>
+<!-- Comes back to the home page. -->
+<request>
+<http url='/' version='1.1' method='GET'></http>
+</request>
+<!-- User is typing something, Wait for 2 secs-->
+<thinktime value="2" random="true"></thinktime>
+<!-- The content that is being searched is randomly selected from a file -->
+<setdynvars sourcetype="file" fileid="search" delimiter="," order="random">
+<var name="search_param"/>
+</setdynvars>
+<request subst="true">
+<http url='/' version="1.1" method='GET' contents='search=%%_search_param%%&amp;hsearch=Search'>
+</http>
+</request>
+<!-- Goes to the page displaying all movies with the keyword -->
+<request>
+<http url='/movies?utf8=✓&amp;search=%%_search_param%%&amp;hsearch=' version="1.1" method='POST'></http>
+</request>
+<!-- Waits before reviewing a movie -->
+<thinktime value="2" random="true"></thinktime>
+<!-- -->
+<setdynvars sourcetype="random_number" start="1" end="400">
+<var name="movie_id"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="1" end="5">
+<var name="rating"/>
+</setdynvars>
+<setdynvars sourcetype="file" fileid="comments" delimiter="," order="random">
+<var name="review"/>
+</setdynvars>
+<!-- Goes to the URL of the movie which he wants to rate -->
+<request subst="true">
+<http url='/movies/%%_movie_id%%' version="1.1" method='POST'></http>
+</request>
+<!-- Writes a review for that particular movie -->
+<request subst="true">
+<http
+  url='/movies/%%_movie_id%%/reviews/new'
+  version="1.1"
+  method='GET'
+  contents='review%5Brating%5D=%%_rating%%&amp;
+  review%5Bcomment%5D=%%_review%%&amp;
+  rsubmit=Submit'>
+</http>
+</request>
+<!-- View the comment that he posted -->
+<thinktime value="2" random="true"></thinktime>
+<request subst="true">
+<http url='/movies/%%_movie_id%%' version="1.1" method='POST'></http>
+</request>
+<!-- Go to Browse a Movie Page -->
+<thinktime value="2" random="true"></thinktime>
+<request subst="true">
+<http url='/movies' version="1.1" method='POST'></http>
+</request>
+<!--
+<setdynvars sourcetype="random_number" start="2" end="40">
+<var name="random_page_no" />
+</setdynvars>
+-->
+<!-- Go to a particular page using pagination feature -->
+<thinktime value="2" random="true"></thinktime>
+<!--
+<request subst="true">
+<http url='/page/Browse?page=6' version="1.1" method='POST'></http>
+</request>
+-->
+<setdynvars sourcetype="random_number" start="1" end="400">
+<var name="movie_id1"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="1" end="400">
+<var name="movie_id2"/>
+</setdynvars>
+<!-- Add a particular movie to the cart -->
+<thinktime value="2" random="true"></thinktime>
+<request subst="true">
+<http url='/cart/%%_movie_id1%%' version="1.1" method='POST'></http>
+</request>
+<!-- Add another movie to the Cart -->
+<thinktime value="2" random="true"></thinktime>
+<request subst="true">
+<http url='/cart/%%_movie_id2%%' version="1.1" method='POST'></http>
+</request>
+<thinktime value="2" random="true"></thinktime>
+<!-- Checkout -->
+<request subst="true">
+<http url='/shop' version="1.1" method='POST'></http>
+</request>
+<thinktime value="2" random="true"></thinktime>
+<!-- The user decides to go to Neary Theatres Tab -->
+<request subst="true">
+<http url='/page/About' version="1.1" method='POST'></http>
+</request>
+<!-- Waits and has a look at the maps beig displayed -->
+<thinktime value="5" random="true"></thinktime>
+<!-- The user goes to Advanced Search Tab -->
+<request subst="true">
+<http url='/searches/new' version="1.1" method='POST'></http>
+</request>
+<!-- Types the form for Advanced Search -->
+<thinktime value="2" random="true"></thinktime>
+<setdynvars sourcetype="file" fileid="search" delimiter="," order="random">
+<var name="keywords"/>
+<var name="genres"/>
+<var name="min_price"/>
+<var name="max_price"/>
+<var name="imdb_above"/>
+</setdynvars>
+<!-- Submits the form -->
+<request subst="true">
+<http
+  url='/searches/new'
+  version="1.1"
+  method='GET'
+  contents='search%5Bkeywords%5D=%%_keywords%%&amp;
+  search%5Bgenres%5D=%%_genres%%&amp;
+  search%5Bmin_price%5D=%%_min_price%%&amp;
+  search%5Bmax_price%5D=%%_max_price%%&amp;
+  search%5Bimdb_above%5D=%%_imdb_above%%&amp;
+  commit=Search'>
+</http>
+</request>
+<!-- Goes to the page displaying the search results -->
+<request subst="true">
+<http url='/searches/1' version="1.1" method='POST'></http>
+</request>
+<!-- Has a look at the search results -->
+<thinktime value="2" random="true"></thinktime>
+<!-- Signs Out of the System -->
+<request subst="true">
+<http url='/users/sign_out' version="1.1" method='POST'></http>
+</request>
+</session>
+
+<!-- User Session consisting of only Reads(1) -->
+<session name="read1" probability="20" type="ts_http">
+  <!-- start out at the dashboard. -->
+  <request>
+  <http url='/' version='1.1' method='GET'></http>
+  </request>
+  <!-- wait for up to 2 seconds, user is looking for the sign up button at the first page -->
+  <thinktime value="2" random="true"></thinktime>
+  <!-- visit the sign up page, as a user would do.  -->
+  <request>
+  <http url='/users/sign_up' version='1.1' method='GET'></http>
+  </request>
+  <!-- wait for up to 2 seconds, user is typing names -->
+  <thinktime value="2" random="true"></thinktime>
+  <setdynvars sourcetype="random_number" start="101" end="100100">
+  <var name="random_email_id1"/>
+  </setdynvars>
+  <!-- User Signs Up -->
+  <request subst="true">
+  <http
+    url='/users/sign_up'
+    version='1.1' method='GET'
+    contents='user%5bemail%5d=filmo_%%_random_email_id1%%%40gmail%2Ecom&amp;
+    user%5bpassword%5d=ouRPASSion&amp;
+    user%5bpassword_confirmation%5d=ouRPASSion&amp;
+    commit=Sign+up'>
+  </http>
+  </request>
+  <!-- Comes back to the home page. -->
+  <request>
+  <http url='/' version='1.1' method='GET'></http>
+  </request>
+  <!-- User is typing something, Wait for 2 secs-->
+  <thinktime value="2" random="true"></thinktime>
+  <!-- The content that is being searched is randomly selected from a file -->
+  <setdynvars sourcetype="file" fileid="search" delimiter="," order="random">
+  <var name="search_param1"/>
+  </setdynvars>
+  <request subst="true">
+  <http url='/' version="1.1" method='GET' contents='search=%%_search_param1%%&amp;hsearch=Search'>
+  </http>
+  </request>
+  <!-- Goes to the page displaying all movies with the keyword -->
+  <request>
+  <http url='/movies?utf8=✓&amp;search=%%_search_param1%%&amp;hsearch=' version="1.1" method='POST'></http>
+  </request>
+  <!-- Go to Browse a Movie Page -->
+  <thinktime value="2" random="true"></thinktime>
+  <request subst="true">
+  <http url='/movies' version="1.1" method='POST'></http>
+  </request>
+  <!--
+  <setdynvars sourcetype="random_number" start="2" end="40">
+  <var name="random_page_no" />
+  </setdynvars>
+  -->
+  <!-- Go to a particular page using pagination feature -->
+  <thinktime value="2" random="true"></thinktime>
+  <!--
+  <request subst="true">
+  <http url='/page/Browse?page=6' version="1.1" method='POST'></http>
+  </request>
+  -->
+  <setdynvars sourcetype="random_number" start="1" end="400">
+  <var name="movie_id3"/>
+  </setdynvars>
+  <setdynvars sourcetype="random_number" start="1" end="400">
+  <var name="movie_id4"/>
+  </setdynvars>
+  <!-- Add a particular movie to the cart -->
+  <thinktime value="2" random="true"></thinktime>
+  <request subst="true">
+  <http url='/cart/%%_movie_id3%%' version="1.1" method='POST'></http>
+  </request>
+  <!-- Add another movie to the Cart -->
+  <thinktime value="2" random="true"></thinktime>
+  <request subst="true">
+  <http url='/cart/%%_movie_id4%%' version="1.1" method='POST'></http>
+  </request>
+  <thinktime value="2" random="true"></thinktime>
+  <!-- Checkout -->
+  <request subst="true">
+  <http url='/shop' version="1.1" method='POST'></http>
+  </request>
+  <!-- Signs Out of the System -->
+  <request subst="true">
+  <http url='/users/sign_out' version="1.1" method='POST'></http>
+</request>
+</session>
+
+
+
+<!-- User Session consisting of only Reads(2) -->
+<session name="read2" probability="20" type="ts_http">
+  <!-- start out at the dashboard. -->
+  <request>
+  <http url='/' version='1.1' method='GET'></http>
+  </request>
+  <!-- The user decides to go to Neary Theatres Tab -->
+  <request subst="true">
+  <http url='/page/About' version="1.1" method='POST'></http>
+  </request>
+<!-- Waits and has a look at the maps beig displayed -->
+<thinktime value="5" random="true"></thinktime>
+<!-- The user goes to Advanced Search Tab -->
+<request subst="true">
+<http url='/searches/new' version="1.1" method='POST'></http>
+</request>
+<!-- Types the form for Advanced Search -->
+<thinktime value="2" random="true"></thinktime>
+<setdynvars sourcetype="file" fileid="search" delimiter="," order="random">
+<var name="keywords1"/>
+<var name="genres1"/>
+<var name="min_price1"/>
+<var name="max_price1"/>
+<var name="imdb_above1"/>
+</setdynvars>
+<!-- Submits the form -->
+<request subst="true">
+<http url='/searches/new'
+  version="1.1"
+  method='GET'
+  contents='search%5Bkeywords%5D=%%_keywords1%%&amp;
+  search%5Bgenres%5D=%%_genres1%%&amp;
+  search%5Bmin_price%5D=%%_min_price1%%&amp;
+  search%5Bmax_price%5D=%%_max_price1%%&amp;
+  search%5Bimdb_above%5D=%%_imdb_above1%%&amp;
+  commit=Search'>
+</http>
+</request>
+<!-- Goes to the page displaying the search results -->
+<request subst="true">
+<http url='/searches/1' version="1.1" method='POST'></http>
+</request>
+<!-- Has a look at the search results -->
+<thinktime value="2" random="true"></thinktime>
+</session>
+
+
+
+<!-- User Session Consisting of only Writes -->
+<session name="write" probability="35" type="ts_http">
+  <!-- start out at the dashboard. -->
+  <request>
+  <http url='/' version='1.1' method='GET'></http>
+  </request>
+    <!-- wait for up to 2 seconds, user is looking for the sign up button at the first page -->
+    <thinktime value="2" random="true"></thinktime>
+    <!-- visit the sign up page, as a user would do.  -->
+    <request>
+    <http url='/users/sign_up' version='1.1' method='GET'></http>
+    </request>
+    <!-- wait for up to 2 seconds, user is typing names -->
+    <thinktime value="2" random="true"></thinktime>
+    <setdynvars sourcetype="random_number" start="101" end="100100">
+    <var name="random_email_id"/>
+    </setdynvars>
+    <!-- User Signs Up -->
+    <request subst="true">
+    <http
+      url='/users/sign_up'
+      version='1.1' method='GET'
+      contents='user%5bemail%5d=filmo_%%_random_email_id%%%40gmail%2Ecom&amp;
+      user%5bpassword%5d=ouRPASSion&amp;
+      user%5bpassword_confirmation%5d=ouRPASSion&amp;
+      commit=Sign+up'>
+    </http>
+    </request>
+    <!-- Waits before reviewing a movie -->
+    <thinktime value="2" random="true"></thinktime>
+    <setdynvars sourcetype="random_number" start="1" end="400">
+    <var name="movie_id"/>
+    </setdynvars>
+    <setdynvars sourcetype="random_number" start="1" end="5">
+    <var name="rating"/>
+    </setdynvars>
+    <setdynvars sourcetype="file" fileid="comments" delimiter="," order="random">
+    <var name="review"/>
+    </setdynvars>
+    <!-- Goes to the URL of the movie which he wants to rate -->
+    <request subst="true">
+    <http url='/movies/%%_movie_id%%' version="1.1" method='GET'></http>
+    </request>
+    <!-- Writes a review for that particular movie -->
+    <request subst="true">
+    <http
+      url='/movies/%%_movie_id%%/reviews/new'
+      version="1.1"
+      method='GET'
+      contents='review%5Brating%5D=%%_rating%%&amp;
+      review%5Bcomment%5D=%%_review%%&amp;
+      rsubmit=Submit'>
+    </http>
+    </request>
+    <!-- View the comment that he posted -->
+    <thinktime value="2" random="true"></thinktime>
+    <request subst="true">
+    <http url='/movies/%%_movie_id%%' version="1.1" method='GET'></http>
+    </request>
+    <!-- Waits before reviewing a movie -->
+    <thinktime value="2" random="true"></thinktime>
+    <setdynvars sourcetype="random_number" start="1" end="400">
+    <var name="movie_id22"/>
+    </setdynvars>
+    <setdynvars sourcetype="random_number" start="1" end="5">
+    <var name="rating22"/>
+    </setdynvars>
+    <setdynvars sourcetype="file" fileid="comments" delimiter="," order="random">
+    <var name="review22"/>
+    </setdynvars>
+    <!-- Goes to the URL of the movie which he wants to rate -->
+    <request subst="true">
+    <http url='/movies/%%_movie_id22%%' version="1.1" method='GET'></http>
+    </request>
+    <!-- Writes a review for that particular movie -->
+    <request subst="true">
+    <http
+      url='/movies/%%_movie_id22%%/reviews/new'
+      version="1.1"
+      method='GET'
+      contents='review%5Brating%5D=%%_rating22%%&amp;
+      review%5Bcomment%5D=%%_review22%%&amp;
+      rsubmit=Submit'>
+    </http>
+    </request>
+    <!-- View the comment that he posted -->
+    <thinktime value="2" random="true"></thinktime>
+    <request subst="true">
+    <http url='/movies/%%_movie_id22%%' version="1.1" method='GET'></http>
+    </request>
+  <thinktime value="2" random="true"></thinktime>
+  <!-- Signs Out of the System -->
+  <request subst="true">
+  <http url='/users/sign_out' version="1.1" method='GET'></http>
+</request>
+</session>
+</sessions>
+</tsung>

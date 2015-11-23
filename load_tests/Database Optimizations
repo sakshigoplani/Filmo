@@ -1,0 +1,19 @@
+Started GET "/movies" for 127.0.0.1 at 2015-11-22 21:04:26 -0800
+Processing by MoviesController#index as HTML
+  Movie Load (267.6ms)  SELECT `movies`.* FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (8063.1ms)
+  User Load (0.3ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 8750ms (Views: 8225.0ms | ActiveRecord: 270.4ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2015-11-22 21:23:36 -0800
+Processing by MoviesController#index as HTML
+  Movie Load (73.3ms)  SELECT id,title, poster_url, genres, price FROM `movies`
+  Rendered movies/index.html.erb within layouts/application (22749.0ms)
+  User Load (0.4ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 200 OK in 23532ms (Views: 23303.0ms | ActiveRecord: 89.5ms)
+
+
+
+
+
