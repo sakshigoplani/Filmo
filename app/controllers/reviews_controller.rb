@@ -3,7 +3,8 @@ class ReviewsController < ApplicationController
 before_action :set_movie
   before_action :authenticate_user!
 
-  
+
+#Just Adding a Comment for Testing
 
   # GET /reviews/new
   def new
@@ -22,11 +23,11 @@ before_action :set_movie
 @review.movie_id=@movie.id
     if @review.save
        redirect_to @movie
-    else 
+    else
        render 'new'
     end
-   
-    
+
+
   end
 
   # PATCH/PUT /reviews/1
