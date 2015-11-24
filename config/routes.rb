@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :reviews,except: [:show,:index]
   end
   devise_for :users
-
+  resources :posts do
+    resources :comments
+  end  
   get '/cart' => 'cart#index'
   get '/cart/clear' => 'cart#clearCart'
   get '/cart/:id' => 'cart#add'

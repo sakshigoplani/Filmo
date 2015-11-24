@@ -1,7 +1,6 @@
-
 <p>
   <%=image_tag("background_final.png",:width=>1225, :height=>650)%>
-
+  <br><br><br>
   <div id="search_nav" class="input-group input-group-lg" style="position:relative; left:-130px; top:-400px;">
   <%= form_tag(movies_path, :method => "get", class: "navbar-form",id: "search-form") do %>
   <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "Search Movies", size: "60x200" %> &nbsp&nbsp
