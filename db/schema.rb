@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20151124055730) do
     t.datetime "updated_at",                             null: false
   end
 
+  add_index "movies", ["genres"], name: "genres_index1", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
@@ -64,7 +66,9 @@ ActiveRecord::Schema.define(version: 20151124055730) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
-
+  
+  add_index "searches", ["genres"], name: "genres_index2", using: :btree
+  
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
