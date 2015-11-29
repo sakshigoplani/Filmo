@@ -4,10 +4,10 @@
 =  link_to "New Post", new_post_path
 
 - @post.each do |post|
-<% cache post do %>
+
   %h2= link_to post.title, post
   %p
     Posted
     = time_ago_in_words(post.created_at)
     ago
-    <%end%>
+  
