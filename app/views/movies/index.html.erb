@@ -22,6 +22,8 @@
 
   <tbody>
     <% @movies.each do |movie| %>
+    <% cache(cache_key_for_movie(movie)) do %>
+
       <tr>
         <td><center><h5><%= movie.title %></center></h5></td>
         <td> <center><h5><img src="<%= movie.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /></center></h5> </td>
@@ -33,6 +35,7 @@
 	<td><center><h5><a href="/cart/<%=movie.id%>">Add to cart</a></center></h5><td>
       </tr>
 
+    <% end %>
     <% end %>
   </tbody>
 <%= link_to 'Back', root_path %>
