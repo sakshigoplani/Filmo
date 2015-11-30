@@ -7,6 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #require 'faker'
 
+begin
+  mutex = SeedMutex.create(acquired: true)
+rescue ActiveRecord::RecordNotUnique
+  mutex = nil
+end
+
+if mutex
+
 1.upto(10) do |i|
 	u= User.create!(email: "user#{i}@gmail.com",
 			password: "hello1234",
@@ -192,4 +200,4 @@ end
 				updated_at: '10/11/2015 17:00');
 	c1.save!;
 end
-
+end
