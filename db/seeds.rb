@@ -21,6 +21,7 @@
 	u.save!;
 end
 
+if Post.count < 10001
 1.upto(10000) do |i|
 	if ((i % 2) == 0)
 		p = Post.create!(title: "Post #{i}",
@@ -176,7 +177,9 @@ end
 		p.save!;
 	end
 end
+end
 
+if Comment.count < 20001
 1.upto(10000) do |i|
 	c = Comment.create!(comment: 'Comment for the above post',
 				post_id: "#{i}",
@@ -191,5 +194,6 @@ end
 				created_at: '10/11/2015 17:00',
 				updated_at: '10/11/2015 17:00');
 	c1.save!;
+end
 end
 
