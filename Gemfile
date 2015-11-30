@@ -24,7 +24,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'faker'#, '~> 1.6', '>= 1.6.1'
+#gem 'faker'#, '~> 1.6', '>= 1.6.1'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 #gem 'psych', '~> 2.0', '>= 2.0.15'
