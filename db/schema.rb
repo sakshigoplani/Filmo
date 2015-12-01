@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20151130235638) do
     t.datetime "updated_at",                             null: false
   end
 
+  add_index "movies", ["genres"], name: "genres_index", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
