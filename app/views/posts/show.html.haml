@@ -1,11 +1,17 @@
 #post_content
+
 %h1= @post.title
-%p= @post.genres
-%p= @post.content
+
+%strong= @post.genres
+%br
+%strong= @post.content
 
 #comments
+  
   %h2= @post.comments.count
+  %hr
   = render @post.comments
+  %hr
 
   %h3 Reply to thread
   = render "comments/form"
