@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<% cache(cache_key_for_movie_table) do %>
 
 <br>
 <br>
@@ -22,7 +22,7 @@
 
   <tbody>
     <% @movies.each do |movie| %>
-    <% cache(cache_key_for_movie(movie)) do %>
+    <% cache(cache_key_for_movie_row(movie)) do  %>
       <tr>
         <td><center><h5><%= movie.title %></center></h5></td>
         <td> <center><h5><img src="<%= movie.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /></center></h5> </td>
@@ -43,5 +43,5 @@
 <%= link_to 'Back', root_path %>
 <% end %>
 <br>
-
+<% end %>
 <!-- <%= link_to 'New Movie', new_movie_path %> -->
