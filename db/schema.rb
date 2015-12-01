@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124055730) do
+ActiveRecord::Schema.define(version: 20151130235638) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "comment",    limit: 65535
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20151124055730) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
-
-  add_index "movies", ["genres"], name: "genres_index1", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -66,9 +64,15 @@ ActiveRecord::Schema.define(version: 20151124055730) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
-  
-  add_index "searches", ["genres"], name: "genres_index2", using: :btree
-  
+
+  create_table "seed_mutexes", force: :cascade do |t|
+    t.boolean  "acquired"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "seed_mutexes", ["acquired"], name: "index_seed_mutexes_on_acquired", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
