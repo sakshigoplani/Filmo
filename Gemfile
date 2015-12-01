@@ -41,7 +41,7 @@ gem 'autoprefixer-rails'
 
 # For pagination
 gem 'will_paginate'
-gem 'dalli'
+
 gem 'rails_weak_etags'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
