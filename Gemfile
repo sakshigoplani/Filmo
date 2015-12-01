@@ -55,4 +55,5 @@ group :development do
 gem 'spring'
 gem 'rails_weak_etags'
 gem 'ar-octopus'
+gem 'psych', '~> 2.0', '>= 2.0.15'
 end
