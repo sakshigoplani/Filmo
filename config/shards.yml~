@@ -1,6 +1,5 @@
 octopus:
   environments:
-    - staging
     - production
   replicated: true
   fully_replicated: true
