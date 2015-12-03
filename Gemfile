@@ -41,7 +41,7 @@ gem 'autoprefixer-rails'
 
 # For pagination
 gem 'will_paginate'
-gem 'ar-octopus', '0.8.5', :require => "octopus"
+gem "ar-octopus", :git => "git://github.com/tchandy/octopus.git", :require => "octopus"
 gem 'activerecord-mysql-adapter'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
