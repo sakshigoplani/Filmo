@@ -21,9 +21,9 @@ octopus:
       host: 
       adapter: mysql2
       username: root
-      database: rails_app
+      database: filmo_production
     slave2:
       host:
       adapter: mysql2
       username: root
-      database: rails_app
+      database: filmo_production
