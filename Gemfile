@@ -39,7 +39,7 @@ gem 'autoprefixer-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem "ar-octopus", :git => "git://github.com/tchandy/octopus.git", :require => "octopus"
+gem 'ar-octopus', '~> 0.8.5'
 # For pagination
 gem 'will_paginate'
 group :development, :test do
@@ -53,6 +53,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring'
+
 
 
 end
