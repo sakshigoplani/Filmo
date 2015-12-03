@@ -1,0 +1,36 @@
+octopus:
+  environments:
+    - staging
+    - production
+  replicated: true
+  fully_replicated: true 
+  staging:
+    slave1:
+      host: Filmo-slave-128457714.us-west-2.elb.amazonaws.com
+      adapter: mysql2
+      database: rails_app
+      username: root
+      password: 
+      reconnect: false
+    slave2:
+      host: Filmo-slave3-1214644875.us-west-2.elb.amazonaws.com
+      adapter: mysql2
+      database: rails_app
+      username: root
+      password: 
+      reconnect: false
+  production:
+    slave1:
+      host: Filmo-slave-128457714.us-west-2.elb.amazonaws.com
+      adapter: mysql2
+      database: rails_app
+      username: root
+      password: 
+      reconnect: true
+    slave2:
+      host: Filmo-slave3-1214644875.us-west-2.elb.amazonaws.com
+      adapter: mysql2
+      database: rails_app
+      username: root
+      password: 
+      reconnect: false
