@@ -33,4 +33,4 @@ octopus:
       database: rails_app
       username: root
       password: 
-      reconnect: false
+      reconnect: true
