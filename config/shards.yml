@@ -21,9 +21,9 @@ octopus:
       host: 
       adapter: mysql2
       username: root
-      database: filmo_production
+      database: 
     slave2:
       host:
       adapter: mysql2
       username: root
-      database: filmo_production
+      database: 
