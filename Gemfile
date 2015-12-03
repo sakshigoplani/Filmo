@@ -32,7 +32,7 @@ gem 'autoprefixer-rails'
 #gem 'searchkick', '~> 0.9.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem "ar-octopus", :git => "git://github.com/tchandy/octopus.git", :require => "octopus"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
