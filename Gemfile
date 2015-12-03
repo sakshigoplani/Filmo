@@ -38,7 +38,7 @@ gem 'autoprefixer-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem "ar-octopus", :git => "git://github.com/tchandy/octopus.git", :require => "octopus"
 # For pagination
 gem 'will_paginate'
 group :development, :test do
