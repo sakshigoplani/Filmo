@@ -28,6 +28,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
+#replication gem
+gem "ar-octopus", :git => "git://github.com/tchandy/octopus.git", :require => "octopus"
+
 #For Search Feature
 #gem 'searchkick', '~> 0.9.1'
 # Use ActiveModel has_secure_password
