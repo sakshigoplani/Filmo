@@ -39,7 +39,7 @@ gem 'autoprefixer-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'replicate'
+#gem 'replicate'
 # For pagination
 gem 'will_paginate'
 group :development, :test do
