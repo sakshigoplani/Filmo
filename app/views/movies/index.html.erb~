@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
-
+<% cache(cache_key_for_movie_table) do %>
 
 <br>
 <br>
 
 <% if @flag==1 %>
-
+<%= will_paginate @movies %>
 
 <br>
 
@@ -22,17 +22,18 @@
 
   <tbody>
     <% @movies.each do |movie| %>
+    <% cache(cache_key_for_movie_row(movie)) do  %>
       <tr>
         <td><center><h5><%= movie.title %></center></h5></td>
         <td> <center><h5><img src="<%= movie.poster_url %>" alt="HTML5 Icon" style="width:128px;height:128px;" /></center></h5> </td>
         <td><center><h5><%= movie.genres %></center></h5></td>
         <td><center><h5>$&nbsp;<%= movie.price %></center></h5></td>
         <td><center><h5><%= link_to 'Show', movie %></center></h5></td>
-<!--         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> -->
+         <td><%= link_to 'Edit', edit_movie_path(movie) %></td> 
 <!--        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 	<td><center><h5><a href="/cart/<%=movie.id%>">Add to cart</a></center></h5><td>
       </tr>
-
+<% end %>
     <% end %>
   </tbody>
 <%= link_to 'Back', root_path %>
@@ -42,5 +43,5 @@
 <%= link_to 'Back', root_path %>
 <% end %>
 <br>
-
+<% end %>
 <!-- <%= link_to 'New Movie', new_movie_path %> -->
