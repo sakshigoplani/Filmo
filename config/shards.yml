@@ -1,4 +1,4 @@
-octopus:
+
   environments:
     - staging
     - production
