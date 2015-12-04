@@ -28,7 +28,7 @@ if mutex
 	u.save!;
 end
 
-1.upto(10000) do |i|
+1.upto(100) do |i|
 	if ((i % 2) == 0)
 		p = Post.create!(title: "Post #{i}",
 						content: 'Content of Post #{i}',
@@ -184,7 +184,7 @@ end
 	end
 end
 
-1.upto(10000) do |i|
+1.upto(100) do |i|
 	c = Comment.create!(comment: 'Comment for the above post',
 				post_id: "#{i}",
 				user_id: '1',
